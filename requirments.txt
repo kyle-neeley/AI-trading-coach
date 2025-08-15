@@ -1,0 +1,7 @@
+streamlit==1.36.0
+yfinance==0.2.40
+pandas==2.2.2
+numpy==1.26.4
+pandas_ta==0.3.14b0
+SpeechRecognition==3.10.4
+streamlit-mic-recorder==0.0.9
