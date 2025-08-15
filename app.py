@@ -133,7 +133,7 @@ def compute_tech_snapshot(df: pd.DataFrame) -> Dict:
        "avg_vol": float(df["Volume"].tail(30).mean()) if "Volume" in df.columns else np.nan,
    }
 
-def score_for_calls(tech: Dict], em: Optional[float]) -> Tuple[float, List[str]]:
+def score_for_calls(tech: Dict, em: Optional[float]) -> Tuple[float, List[str]]:
    score = 0.0
    reasons = []
    if tech["macd"] > tech["macd_signal"]:
@@ -154,7 +154,7 @@ def score_for_calls(tech: Dict], em: Optional[float]) -> Tuple[float, List[str]]
        score += 0.5; reasons.append("Expected move positive")
    return score, reasons
 
-def score_for_puts(tech: Dict], em: Optional[float]) -> Tuple[float, List[str]]:
+def score_for_puts(tech: Dict, em: Optional[float]) -> Tuple[float, List[str]]:
    score = 0.0
    reasons = []
    if tech["macd"] < tech["macd_signal"]:
@@ -384,7 +384,7 @@ only_highest_conf = st.sidebar.toggle("Only show highest-confidence picks", valu
 
 if auto_scan:
    st.experimental_set_query_params(_ts=str(dt.datetime.utcnow().timestamp()))
-   st.experimental_rerun  # noop (Streamlit Cloud often auto-reruns on widgets); user can use the Refresh button below
+   st.experimental_rerun()  # fixed: added parentheses to actually rerun
 
 # Voice input
 st.subheader("🎤 Talk to your coach")
